@@ -1,0 +1,12 @@
+const int hallSensorPin = 5;  // GPIO pin connected to Hall sensor
+
+void setup() {
+  Serial.begin(115200);
+  pinMode(hallSensorPin, INPUT);
+}
+
+void loop() {
+  int hallValue = digitalRead(hallSensorPin); // Read the Hall sensor
+  Serial.println(hallValue); // Print the value to Serial Monitor
+  delay(500); // Small delay for readability
+}
