@@ -1,0 +1,32 @@
+#include <ESP32Servo.h>
+
+const int hallSensorPin = 5;  // GPIO pin connected to Hall sensor
+Servo myServo;
+
+void setup() {
+  pinMode(hallSensorPin, INPUT);
+  myServo.attach(6);
+  delay(1000);
+  stopServo(); // Stop initially
+}
+
+void loop() {
+  int hallValue = digitalRead(hallSensorPin);
+
+  if (hallValue == LOW) { // Magnet detected
+    rotateClockwise(1400, 100); // Rotate gently while magnet is close
+  } else {
+    stopServo(); // Stop when magnet is not detected
+  }
+}
+
+// Function to rotate clockwise
+void rotateClockwise(int speed, int duration) {
+  myServo.writeMicroseconds(speed);
+  delay(duration);
+}
+
+// Function to stop the servo
+void stopServo() {
+  myServo.writeMicroseconds(1500);
+}
