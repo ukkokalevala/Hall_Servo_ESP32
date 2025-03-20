@@ -1,0 +1,27 @@
+#include <ESP32Servo.h>
+
+Servo myServo;
+
+void setup() {
+  myServo.attach(6);
+  delay(1000);
+  myServo.writeMicroseconds(1500); // Stop initially
+}
+
+void loop() {
+  // Rotate clockwise
+  myServo.writeMicroseconds(1400); // Faster rotation
+  delay(2000);
+
+  // Stop
+  myServo.writeMicroseconds(1500);
+  delay(2000);
+
+  // Rotate counterclockwise
+  myServo.writeMicroseconds(1600);
+  delay(2000);
+
+  // Stop
+  myServo.writeMicroseconds(1500);
+  delay(2000);
+}
